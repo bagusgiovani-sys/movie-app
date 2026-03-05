@@ -1,6 +1,6 @@
 // src/components/home/TrendingSection.tsx
 import { useRef } from "react";
-import { useTrendingMovies } from "../../hooks/UseTrendingMovies";
+import { useTrendingMovies } from "../../hooks/useTrendingMovies";
 import type { Movie } from "../../types/movie.types";
 import ArrowRight from "../../assets/Arrow.svg";
 

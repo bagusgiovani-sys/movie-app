@@ -1,4 +1,4 @@
-import { useTrendingMovies } from "../../hooks/UseTrendingMovies";
+import { useTrendingMovies } from "../../hooks/useTrendingMovies";
 import PlayIcon from "../../assets/Play_icon.svg";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";

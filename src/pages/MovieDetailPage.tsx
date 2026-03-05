@@ -1,9 +1,9 @@
 // src/pages/detail/MovieDetailPage.tsx
 import { useParams } from "react-router-dom";
-import { useMovieDetail } from "../hooks/UseMovieDetail";
-import { useMovieCredits } from "../hooks/UseMovieCredit";
+import { useMovieDetail } from "../hooks/useMovieDetail.ts";
+import { useMovieCredits } from "../hooks/useMovieCredit.ts";
 import { useState } from "react";
-import { useMovieTrailer } from "../hooks/UseMovieTrailer";
+import { useMovieTrailer } from "../hooks/useMovieTrailer.ts";
 import TrailerModal from "../components/movie/TrailerModal";
 import { useFavorites } from "../hooks/UseFavorites.ts";
 

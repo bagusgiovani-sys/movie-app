@@ -1,6 +1,6 @@
 // src/components/home/LatestSection.tsx
 import { useState } from "react";
-import { useLatestMovies } from "../../hooks/UseLatestMovies";
+import { useLatestMovies } from "../../hooks/useLatestMovies";
 import type { Movie } from "../../types/movie.types";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
