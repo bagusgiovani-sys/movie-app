@@ -17,7 +17,7 @@ const TrailerModal = ({ videoKey, onClose }: Props) => {
       </button>
 
       <div
-        className="w-full h-full aspect-video"
+        className="w-10/12 h-10/12 aspect-video"
         onClick={(e) => e.stopPropagation()}
       >
         <iframe
