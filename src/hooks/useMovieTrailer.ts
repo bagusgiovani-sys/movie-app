@@ -1,14 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovieVideos } from "../services/movie.service";
+import { getMovieVideos } from "../services";
+import type { Video } from "../types/movie.types";
 
-export const useMovieTrailer = (id: string) => {
-  return useQuery({
+export const useMovieTrailer = (id: string) =>
+  useQuery<Video[], Error, Video | undefined>({
     queryKey: ["movie-trailer", id],
     queryFn: () => getMovieVideos(id),
     enabled: !!id,
-    select: (data) =>
-      data.results.find(
-        (v: any) => v.type === "Trailer" && v.site === "YouTube"
-      ),
+    select: (data) => data[0],
   });
-};

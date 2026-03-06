@@ -1,10 +1,10 @@
 type ButtonProps = {
-  children: React.ReactNode
-  variant?: 'primary' | 'secondary'
-}
+  children: React.ReactNode;
+  variant?: "primary" | "secondary";
+};
 
-const Button = ({ children, variant = 'primary' }: ButtonProps) => {
-  if (variant === 'secondary') {
+const Button = ({ children, variant = "primary" }: ButtonProps) => {
+  if (variant === "secondary") {
     return (
       <button
         className="
@@ -22,7 +22,7 @@ const Button = ({ children, variant = 'primary' }: ButtonProps) => {
       >
         {children}
       </button>
-    )
+    );
   }
 
   return (
@@ -44,7 +44,7 @@ const Button = ({ children, variant = 'primary' }: ButtonProps) => {
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovieCredits } from "../services/movie.service";
+import { getMovieCredits } from "../services";
+import type { Cast } from "../types/movie.types";
 
 export const useMovieCredits = (id: string) =>
-  useQuery({
+  useQuery<Cast[]>({
     queryKey: ["movie-credits", id],
     queryFn: () => getMovieCredits(id),
     enabled: !!id,

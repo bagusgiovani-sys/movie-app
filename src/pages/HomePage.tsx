@@ -1,11 +1,7 @@
-import Hero from "../features/home/HeroSection"
+import HomeContent from "../features/home";
 
 const HomePage = () => {
-  return (
-    <>
-      <Hero />
-    </>
-  )
-}
+  return <HomeContent />;
+};
 
-export default HomePage
+export default HomePage;
