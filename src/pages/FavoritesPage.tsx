@@ -69,7 +69,7 @@ const FavoriteItem = ({
         <div className="flex items-center gap-3">
           <button
             onClick={onWatchTrailer}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 transition text-white text-sm font-semibold px-5 py-2.5 rounded-full"
+            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 transition text-white text-sm font-semibold px-5 py-2.5 rounded-xl"
           >
             Watch Trailer
             <svg className="w-4 h-4 fill-white" viewBox="0 0 20 20">
@@ -78,7 +78,7 @@ const FavoriteItem = ({
           </button>
           <button
             onClick={onRemove}
-            className="w-10 h-10 rounded-full bg-red-600/20 border border-red-600/40 flex items-center justify-center hover:bg-red-600/40 transition"
+            className="w-10 h-10 rounded-xl bg-red-600/20 border border-red-600/40 flex items-center justify-center hover:bg-red-600/40 transition"
           >
             <svg className="w-5 h-5 fill-red-500" viewBox="0 0 24 24">
               <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
