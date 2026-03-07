@@ -73,7 +73,7 @@ const HeroSection = () => {
             {/* WATCH TRAILER */}
             <button
               onClick={() => trailer && setOpenTrailer(true)}
-              className="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-4 rounded-full bg-[var(--color-primary-300)] px-8 py-4 font-semibold hover:bg-[var(--color-primary-400)] transition"
+              className="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-4 rounded-xl bg-[var(--color-primary-300)] px-8 py-4 font-semibold hover:bg-[var(--color-primary-400)] transition"
             >
               Watch Trailer
               <img src={PlayIcon} className="w-6 h-6" alt="Play" />
@@ -82,7 +82,7 @@ const HeroSection = () => {
             {/* SEE DETAIL */}
             <button
               onClick={() => movie && navigate(`/movie/${movie.id}`)}
-              className="w-full sm:w-auto rounded-full border border-white/30 px-10 py-4 hover:bg-white/10 transition"
+              className="w-full sm:w-auto rounded-xl border border-white/30 px-10 py-4 hover:bg-white/10 transition"
             >
               See Detail
             </button>
