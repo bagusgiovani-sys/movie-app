@@ -10,7 +10,7 @@ const SearchPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white pt-32 pb-12 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="layout-gutter mx-auto">
 
         {/* HEADER */}
         <div className="mb-8">

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTrendingMovies } from "../../hooks/useTrendingMovies";
 import { useMovieTrailer } from "../../hooks";
 import TrailerModal from "../../components/movie/TrailerModal";
+import Button from "../../components/ui/Button";
 import PlayIcon from "../../assets/Play_icon.svg";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
@@ -70,22 +71,14 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
           >
-            {/* WATCH TRAILER */}
-            <button
-              onClick={() => trailer && setOpenTrailer(true)}
-              className="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-4 rounded-xl bg-[var(--color-primary-300)] px-8 py-4 font-semibold hover:bg-[var(--color-primary-400)] transition"
-            >
+            <Button onClick={() => trailer && setOpenTrailer(true)}>
               Watch Trailer
               <img src={PlayIcon} className="w-6 h-6" alt="Play" />
-            </button>
+            </Button>
 
-            {/* SEE DETAIL */}
-            <button
-              onClick={() => movie && navigate(`/movie/${movie.id}`)}
-              className="w-full sm:w-auto rounded-xl border border-white/30 px-10 py-4 hover:bg-white/10 transition"
-            >
+            <Button variant="secondary" onClick={() => movie && navigate(`/movie/${movie.id}`)}>
               See Detail
-            </button>
+            </Button>
           </motion.div>
         </div>
       </div>

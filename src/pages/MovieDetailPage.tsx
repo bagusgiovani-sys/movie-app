@@ -3,7 +3,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMovieDetail, useMovieCredits, useMovieTrailer, useFavorites } from "../hooks";
 import MovieDetailHero from "../features/detail/MovieDetailHero";
-import Overview from "../features/detail/Overview";
 import CastCrew from "../features/detail/CastCrew";
 import TrailerModal from "../components/movie/TrailerModal";
 
@@ -27,7 +26,7 @@ const MovieDetailPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* HERO — zoom in like HeroSection */}
+      {/* HERO — */}
       <motion.div
         initial={{ scale: 1.05, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -41,14 +40,13 @@ const MovieDetailPage = () => {
         />
       </motion.div>
 
-      {/* OVERVIEW + CAST — slide up after hero */}
+      {/* CAST */}
       <motion.div
-        className="layout-gutter py-8 md:mt-[-30px]"
+        className="layout-gutter py-8 md:mt-[-10px]"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
       >
-        <Overview overview={movie.overview} />
         {cast && cast.length > 0 && <CastCrew cast={cast} />}
       </motion.div>
 
