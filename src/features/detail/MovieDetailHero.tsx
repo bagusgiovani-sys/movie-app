@@ -121,10 +121,10 @@ const MovieDetailHero = ({
             onLoad={() => setDesktopBackdropLoaded(true)}
             className={`w-full h-full object-cover object-center transition-opacity duration-500 ${desktopBackdropLoaded ? "opacity-100" : "opacity-0"}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/35 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-          <div className="absolute inset-0 layout-gutter flex items-end pb-64">
+          <div className="absolute inset-0 layout-gutter flex items-end pb-60">
             <div className="flex gap-8 w-full items-end">
               {/* POSTER */}
               {movie.poster_path && (
@@ -152,7 +152,7 @@ const MovieDetailHero = ({
                   <div className="w-px bg-zinc-700 self-stretch" />
                   <div className="flex-1">
                     <h1 className="text-4xl font-bold leading-tight">{movie.title}</h1>
-                    <div className="flex items-center gap-1.5 text-sm text-zinc-400 mt-1">
+                    <div className="flex items-center gap-1.5 text-sm text-zinc-300 mt-1">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
@@ -182,7 +182,7 @@ const MovieDetailHero = ({
                 </div>
 
                 {/* ROW 3: OVERVIEW TEXT */}
-                <p className="text-zinc-400 text-sm leading-relaxed">
+                <p className="text-zinc-300 font-semibold text-sm leading-relaxed">
                   {movie.overview}
                 </p>
 

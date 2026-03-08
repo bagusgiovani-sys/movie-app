@@ -44,14 +44,14 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`fixed top-0 z-50 w-full font-extralight transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full font-extralight transition-all pr-6 md:pr-0 duration-300 ${
         scrolled ? "backdrop-blur-2xl bg-black/40" : "bg-transparent"
       }`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className="layout-gutter flex h-20 md:h-12 items-center mt-2 md:mb-8 md:mt-8 text-[var(--font-size-xl)]">
+      <div className="layout-gutter flex h-20 md:h-12 items-center mt-4 md:mb-8 md:mt-8 text-(--font-size-xl)">
 
         {/* LEFT */}
         <div className="flex items-center md:gap-20">
@@ -78,7 +78,7 @@ export default function Navbar() {
         <div className="ml-auto flex items-center gap-3">
 
           {/* Search Bar (Desktop) */}
-          <div className="hidden md:flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
+          <div className="hidden md:flex items-center gap-2 rounded-full bg-white/10 focus-within:bg-black/50 transition-colors duration-200 px-4 py-2">
             <button onClick={handleSearchClick}>
               <SearchIcon className="h-[1em] w-[1em] text-white/70 hover:text-white transition-colors" />
             </button>
@@ -100,7 +100,7 @@ export default function Navbar() {
               <AnimatePresence>
                 {mobileSearchOpen && (
                   <motion.div
-                    className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 mr-2"
+                    className="flex items-center gap-2 rounded-full bg-white/10 focus-within:bg-black/50 transition-colors duration-200 px-4 py-2 mr-2"
                     initial={{ width: 0, opacity: 0 }}
                     animate={{ width: "180px", opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
