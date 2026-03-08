@@ -7,7 +7,7 @@ type ButtonProps = {
   className?: string;
   isFavorite?: boolean;
   compact?: boolean;
-  size?: "sm" | "lg";
+  size?: "xs" | "sm" | "lg";
 };
 
 const Button = ({
@@ -24,7 +24,7 @@ const Button = ({
   const handleFavoriteClick = () => {
     onClick?.();
     setJustClicked(true);
-    setTimeout(() => setJustClicked(false), 1500);
+    setTimeout(() => setJustClicked(false), 600);
   };
 
   if (variant === "favorite") {
@@ -32,18 +32,18 @@ const Button = ({
       <button
         onClick={handleFavoriteClick}
         className={`
-          ${size === "lg" ? "w-16 h-16" : "w-14 h-14"}
+          ${size === "lg" ? "w-16 h-16" : size === "sm" ? "w-14 h-14" : "w-10 h-10"}
           rounded-xl flex items-center justify-center transition-all duration-200
           ${justClicked ? "pointer-events-none" : ""}
           ${isFavorite
-            ? "bg-(--color-primary-300) hover:bg-white/20"
+            ? "bg-red-600 hover:bg-red-700"
             : "bg-transparent border-2 border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/50"
           }
           ${className}
         `}
       >
         <svg
-          className={`${size === "lg" ? "w-7 h-7" : "w-6 h-6"} ${isFavorite ? "fill-white" : "fill-none"} transition-colors duration-200`}
+          className={`${size === "lg" ? "w-7 h-7" : size === "sm" ? "w-6 h-6" : "w-5 h-5"} ${isFavorite ? "fill-white" : "fill-none"} transition-colors duration-200`}
           stroke="currentColor"
           strokeWidth="2"
           viewBox="0 0 24 24"
