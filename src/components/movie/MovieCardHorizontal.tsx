@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import type { Movie } from "../../types";
-
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+import { TMDB_IMAGE_URL } from "../../lib/constants";
 
 type MovieCardHorizontalProps = {
   movie: Movie;
@@ -13,13 +12,13 @@ const MovieCardHorizontal = ({ movie }: MovieCardHorizontalProps) => {
   return (
     <div
       onClick={() => navigate(`/movie/${movie.id}`)}
-      className="flex gap-4 cursor-pointer hover:bg-zinc-900 p-3 rounded-xl transition"
+      className="group flex gap-4 cursor-pointer hover:bg-zinc-900 p-3 rounded-xl transition"
     >
       {/* POSTER */}
-      <div className="flex-shrink-0 w-22 h-34 md:w-22 h-34 rounded-lg overflow-hidden bg-zinc-800 bo">
+      <div className="flex-shrink-0 w-22 h-34 rounded-lg overflow-hidden bg-zinc-800">
         {movie.poster_path ? (
           <img
-            src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+            src={`${TMDB_IMAGE_URL.w500}${movie.poster_path}`}
             alt={movie.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
           />

@@ -7,8 +7,7 @@ import type { Movie } from "../types/movie.types";
 import TrailerModal from "../components/movie/TrailerModal";
 import Button from "../components/ui/Button";
 import PlayIcon from "../assets/Play_icon.svg";
-
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
+import { TMDB_IMAGE_URL } from "../lib/constants";
 
 const EmptyState = () => {
   const navigate = useNavigate();
@@ -40,7 +39,7 @@ const FavoriteItem = ({
   <div className="relative rounded-2xl overflow-hidden mb-4">
     {/* BACKGROUND POSTER */}
     <img
-      src={`${IMAGE_BASE_URL}${movie.backdrop_path || movie.poster_path}`}
+      src={`${TMDB_IMAGE_URL.original}${movie.backdrop_path || movie.poster_path}`}
       alt=""
       className="absolute top-0 right-0 h-full w-2/3 object-cover object-left"
     />
@@ -51,7 +50,7 @@ const FavoriteItem = ({
     <div className="relative z-10 flex gap-4 p-5">
       {/* POSTER */}
       <img
-        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+        src={`${TMDB_IMAGE_URL.w200}${movie.poster_path}`}
         alt={movie.title}
         className="w-20 md:w-32 object-cover rounded-lg flex-shrink-0 cursor-pointer self-start"
         onClick={() => navigate(`/movie/${movie.id}`)}

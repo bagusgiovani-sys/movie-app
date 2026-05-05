@@ -19,9 +19,9 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (mobileSearchOpen) {
-      setTimeout(() => mobileInputRef.current?.focus(), 150);
-    }
+    if (!mobileSearchOpen) return;
+    const t = setTimeout(() => mobileInputRef.current?.focus(), 150);
+    return () => clearTimeout(t);
   }, [mobileSearchOpen]);
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {

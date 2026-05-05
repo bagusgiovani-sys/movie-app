@@ -7,7 +7,7 @@ import TrailerModal from "../../components/movie/TrailerModal";
 import Button from "../../components/ui/Button";
 import PlayIcon from "../../assets/Play_icon.svg";
 
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
+import { TMDB_IMAGE_URL } from "../../lib/constants";
 
 const HeroSection = () => {
   const { data: trendingMovies, isLoading, isError } = useTrendingMovies();
@@ -17,12 +17,18 @@ const HeroSection = () => {
   const movie = trendingMovies?.[0];
   const { data: trailer } = useMovieTrailer(movie?.id ? String(movie.id) : "");
 
-  if (isLoading || isError) {
-    return <section className="h-screen w-full bg-black" />;
+  if (isLoading) return <section className="h-screen w-full bg-black" />;
+
+  if (isError) {
+    return (
+      <section className="h-screen w-full bg-black flex items-center justify-center">
+        <p className="text-zinc-500">Could not load featured movie.</p>
+      </section>
+    );
   }
 
   const backdropUrl = movie?.backdrop_path
-    ? `${IMAGE_BASE_URL}${movie.backdrop_path}`
+    ? `${TMDB_IMAGE_URL.original}${movie.backdrop_path}`
     : "";
 
   return (

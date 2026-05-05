@@ -22,6 +22,7 @@ const TrailerModal = ({ videoKey, onClose }: Props) => {
       >
         <iframe
           src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}
+          title="Movie Trailer"
           className="w-full h-full rounded-xl"
           allow="autoplay; encrypted-media"
           allowFullScreen

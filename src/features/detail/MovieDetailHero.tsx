@@ -3,8 +3,7 @@ import type { MovieDetail } from "../../types";
 import Button from "../../components/ui/Button";
 import PlayIcon from "../../assets/Play_icon.svg";
 import Overview from "./Overview";
-
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
+import { TMDB_IMAGE_URL } from "../../lib/constants";
 
 type MovieDetailHeroProps = {
   movie: MovieDetail;
@@ -56,7 +55,7 @@ const MovieDetailHero = ({
         <div className="relative h-80 bg-zinc-900">
           {!backdropLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
           <img
-            src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+            src={`${TMDB_IMAGE_URL.original}${movie.backdrop_path}`}
             alt={movie.title}
             onLoad={() => setBackdropLoaded(true)}
             className={`w-full h-full object-cover object-top transition-opacity duration-500 ${backdropLoaded ? "opacity-100" : "opacity-0"}`}
@@ -70,7 +69,7 @@ const MovieDetailHero = ({
               {!posterLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
               {movie.poster_path && (
                 <img
-                  src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+                  src={`${TMDB_IMAGE_URL.original}${movie.poster_path}`}
                   alt={movie.title}
                   onLoad={() => setPosterLoaded(true)}
                   className={`w-full h-full object-cover shadow-2xl transition-opacity duration-500 ${posterLoaded ? "opacity-100" : "opacity-0"}`}
@@ -116,7 +115,7 @@ const MovieDetailHero = ({
         <div className="relative h-full overflow-hidden bg-zinc-900">
           {!desktopBackdropLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
           <img
-            src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
+            src={`${TMDB_IMAGE_URL.original}${movie.backdrop_path}`}
             alt={movie.title}
             onLoad={() => setDesktopBackdropLoaded(true)}
             className={`w-full h-full object-cover object-center transition-opacity duration-500 ${desktopBackdropLoaded ? "opacity-100" : "opacity-0"}`}
@@ -131,7 +130,7 @@ const MovieDetailHero = ({
                 <div className="flex-shrink-0 w-56 rounded-2xl overflow-hidden bg-zinc-800 relative">
                   {!desktopPosterLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
                   <img
-                    src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+                    src={`${TMDB_IMAGE_URL.original}${movie.poster_path}`}
                     alt={movie.title}
                     onLoad={() => setDesktopPosterLoaded(true)}
                     className={`w-full shadow-2xl transition-opacity duration-500 ${desktopPosterLoaded ? "opacity-100" : "opacity-0"}`}

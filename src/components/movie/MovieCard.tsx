@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Movie } from "../../types/movie.types";
-
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+import { TMDB_IMAGE_URL } from "../../lib/constants";
 
 type MovieCardProps = {
   movie: Movie;
@@ -27,7 +26,7 @@ const MovieCard = ({ movie, className = "" }: MovieCardProps) => {
 
         {movie.poster_path ? (
           <img
-            src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+            src={`${TMDB_IMAGE_URL.w500}${movie.poster_path}`}
             alt={movie.title}
             onLoad={() => setLoaded(true)}
             className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ${

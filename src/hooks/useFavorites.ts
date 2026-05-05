@@ -6,8 +6,12 @@ export const useFavorites = () => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem("favorites");
-    if (stored) setFavorites(JSON.parse(stored));
+    try {
+      const stored = localStorage.getItem("favorites");
+      if (stored) setFavorites(JSON.parse(stored));
+    } catch {
+      localStorage.removeItem("favorites");
+    }
   }, []);
 
   const toggleFavorite = (movie: Movie) => {

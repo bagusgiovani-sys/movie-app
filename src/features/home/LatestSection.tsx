@@ -7,8 +7,17 @@ const LatestSection = () => {
   const { data: movies, isLoading, isError } = useLatestMovies();
   const [visibleCount, setVisibleCount] = useState(15);
 
-  if (isLoading || isError || !movies) {
-    return <section className="bg-black h-96" />;
+  if (isLoading || !movies) return <section className="bg-black h-96" />;
+
+  if (isError) {
+    return (
+      <section className="bg-black py-16">
+        <div className="layout-gutter">
+          <h2 className="text-2xl font-bold mb-6">Latest Release</h2>
+          <p className="text-zinc-500 text-sm">Could not load latest movies.</p>
+        </div>
+      </section>
+    );
   }
 
   return (

@@ -11,8 +11,17 @@ const TrendingSection = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  if (isLoading || isError || !movies) {
-    return <section className="bg-black h-64 w-full" />;
+  if (isLoading || !movies) return <section className="bg-black h-64 w-full" />;
+
+  if (isError) {
+    return (
+      <section className="bg-black py-12">
+        <div className="layout-gutter">
+          <h2 className="text-2xl font-bold mb-4">Trending Now</h2>
+          <p className="text-zinc-500 text-sm">Could not load trending movies.</p>
+        </div>
+      </section>
+    );
   }
 
   const handleScroll = () => {

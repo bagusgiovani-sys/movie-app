@@ -15,8 +15,21 @@ const MovieDetailPage = () => {
   const { data: cast } = useMovieCredits(id!);
   const { toggleFavorite, isFavorite } = useFavorites();
 
-  if (isLoading || isError || !movie) {
-    return <div className="min-h-screen bg-black" />;
+  if (isLoading) return <div className="min-h-screen bg-black" />;
+
+  if (isError || !movie) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-4 text-center px-4">
+        <p className="text-xl font-semibold text-white">Failed to load movie</p>
+        <p className="text-zinc-500 text-sm">Check your connection and try again.</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-2 px-6 py-2.5 rounded-full border border-white/30 text-sm hover:bg-white/10 transition"
+        >
+          Retry
+        </button>
+      </div>
+    );
   }
 
   return (
