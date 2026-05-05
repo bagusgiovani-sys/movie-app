@@ -1,0 +1,21 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Movie Logo" [ref=e6] [cursor=pointer]
+        - navigation [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e9]: Home
+          - link "Favorites" [ref=e10] [cursor=pointer]:
+            - /url: /favorites
+            - generic [ref=e11]: Favorites
+      - generic [ref=e13]:
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+        - textbox "Search Movie" [ref=e18]
+  - region "Notifications alt+T"
+  - contentinfo [ref=e23]:
+    - generic [ref=e25]:
+      - img "Movie Logo" [ref=e27] [cursor=pointer]
+      - paragraph [ref=e28]: Copyright ©2026 Movie Explorer

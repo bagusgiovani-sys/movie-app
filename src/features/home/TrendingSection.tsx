@@ -12,6 +12,11 @@ const TrendingSection = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [atEnd, setAtEnd] = useState(false);
 
+  useEffect(() => {
+    const el = sliderRef.current;
+    if (el) setAtEnd(el.scrollWidth <= el.clientWidth);
+  }, [movies]);
+
   if (isLoading || !movies) return <section className="bg-black h-64 w-full" />;
 
   if (isError) {
@@ -24,11 +29,6 @@ const TrendingSection = () => {
       </section>
     );
   }
-
-  useEffect(() => {
-    const el = sliderRef.current;
-    if (el) setAtEnd(el.scrollWidth <= el.clientWidth);
-  }, [movies]);
 
   const handleScroll = () => {
     const el = sliderRef.current;
