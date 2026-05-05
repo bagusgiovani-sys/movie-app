@@ -50,6 +50,7 @@ const MovieDetailPage = () => {
           onWatchTrailer={() => setOpenTrailer(true)}
           onToggleFavorite={() => toggleFavorite(movie)}
           isFavorite={isFavorite(movie.id)}
+          hasTrailer={!!trailer}
         />
       </motion.div>
 

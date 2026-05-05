@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTrendingMovies } from "../../hooks";
 import MovieCard from "../../components/movie/MovieCard";
@@ -10,6 +10,7 @@ const TrendingSection = () => {
   const { data: movies, isLoading, isError } = useTrendingMovies();
   const sliderRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [atEnd, setAtEnd] = useState(false);
 
   if (isLoading || !movies) return <section className="bg-black h-64 w-full" />;
 
@@ -24,10 +25,16 @@ const TrendingSection = () => {
     );
   }
 
+  useEffect(() => {
+    const el = sliderRef.current;
+    if (el) setAtEnd(el.scrollWidth <= el.clientWidth);
+  }, [movies]);
+
   const handleScroll = () => {
-    if (sliderRef.current) {
-      setScrollPosition(sliderRef.current.scrollLeft);
-    }
+    const el = sliderRef.current;
+    if (!el) return;
+    setScrollPosition(el.scrollLeft);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 10);
   };
 
   const slideRight = () => {
@@ -62,7 +69,7 @@ const TrendingSection = () => {
               <MovieCard
                 key={movie.id}
                 movie={movie}
-                className="min-w-[200px] md:min-w-[200px] flex-shrink-0"
+                className="min-w-[200px] flex-shrink-0"
               />
             ))}
           </div>
@@ -90,7 +97,9 @@ const TrendingSection = () => {
           {/* RIGHT ARROW */}
           <button
             onClick={slideRight}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/70 p-3 rounded-full hover:bg-black transition-all duration-300"
+            className={`absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/70 p-3 rounded-full hover:bg-black transition-all duration-300 ${
+              atEnd ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
           >
             <img src={ArrowRight} alt="next" className="w-5 h-5" />
           </button>

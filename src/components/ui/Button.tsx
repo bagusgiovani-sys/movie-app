@@ -8,6 +8,7 @@ type ButtonProps = {
   isFavorite?: boolean;
   compact?: boolean;
   size?: "xs" | "sm" | "lg";
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -18,6 +19,7 @@ const Button = ({
   isFavorite = false,
   compact = false,
   size = "lg",
+  disabled = false,
 }: ButtonProps) => {
   const [justClicked, setJustClicked] = useState(false);
 
@@ -74,7 +76,8 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={`w-full sm:w-auto flex items-center justify-center sm:justify-start gap-4 rounded-xl font-semibold transition-all duration-200 bg-(--color-primary-300) hover:bg-(--color-primary-400) ${padding} ${className}`}
+      disabled={disabled}
+      className={`w-full sm:w-auto flex items-center justify-center sm:justify-start gap-4 rounded-xl font-semibold transition-all duration-200 bg-(--color-primary-300) hover:bg-(--color-primary-400) ${padding} ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
     >
       {children}
     </button>

@@ -6,7 +6,6 @@ import { useMovieTrailer } from "../../hooks";
 import TrailerModal from "../../components/movie/TrailerModal";
 import Button from "../../components/ui/Button";
 import PlayIcon from "../../assets/Play_icon.svg";
-
 import { TMDB_IMAGE_URL } from "../../lib/constants";
 
 const HeroSection = () => {
@@ -27,9 +26,11 @@ const HeroSection = () => {
     );
   }
 
-  const backdropUrl = movie?.backdrop_path
+  if (!movie) return <section className="h-screen w-full bg-black" />;
+
+  const backdropUrl = movie.backdrop_path
     ? `${TMDB_IMAGE_URL.original}${movie.backdrop_path}`
-    : "";
+    : null;
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -40,11 +41,13 @@ const HeroSection = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.4, ease: "easeOut" }}
       >
-        <img
-          src={backdropUrl}
-          alt={movie?.title}
-          className="w-full h-full object-cover object-top"
-        />
+        {backdropUrl && (
+          <img
+            src={backdropUrl}
+            alt={movie.title}
+            className="w-full h-full object-cover object-top"
+          />
+        )}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black to-transparent" />
       </motion.div>
@@ -59,7 +62,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
           >
-            {movie?.title}
+            {movie.title}
           </motion.h1>
 
           <motion.p
@@ -68,7 +71,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
           >
-            {movie?.overview}
+            {movie.overview}
           </motion.p>
 
           <motion.div
@@ -77,12 +80,12 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
           >
-            <Button onClick={() => trailer && setOpenTrailer(true)}>
+            <Button disabled={!trailer} onClick={() => setOpenTrailer(true)}>
               Watch Trailer
               <img src={PlayIcon} className="w-6 h-6" alt="Play" />
             </Button>
 
-            <Button variant="secondary" onClick={() => movie && navigate(`/movie/${movie.id}`)}>
+            <Button variant="secondary" onClick={() => navigate(`/movie/${movie.id}`)}>
               See Detail
             </Button>
           </motion.div>

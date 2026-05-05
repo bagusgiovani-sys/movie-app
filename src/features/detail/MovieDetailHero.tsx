@@ -10,6 +10,7 @@ type MovieDetailHeroProps = {
   onWatchTrailer: () => void;
   onToggleFavorite: () => void;
   isFavorite: boolean;
+  hasTrailer: boolean;
 };
 
 // Mobile info cards
@@ -42,6 +43,7 @@ const MovieDetailHero = ({
   onWatchTrailer,
   onToggleFavorite,
   isFavorite,
+  hasTrailer,
 }: MovieDetailHeroProps) => {
   const [backdropLoaded, setBackdropLoaded] = useState(false);
   const [posterLoaded, setPosterLoaded] = useState(false);
@@ -89,7 +91,7 @@ const MovieDetailHero = ({
 
           {/* BUTTONS */}
           <div className="flex gap-3 mb-5">
-            <Button onClick={onWatchTrailer} className="flex-1 justify-center">
+            <Button onClick={onWatchTrailer} disabled={!hasTrailer} className="flex-1 justify-center">
               Watch Trailer
               <img src={PlayIcon} className="w-6 h-6" alt="Play" />
             </Button>
@@ -143,7 +145,7 @@ const MovieDetailHero = ({
 
                 {/* ROW 1: BUTTONS + TITLE */}
                 <div className="flex items-center gap-4">
-                  <Button onClick={onWatchTrailer}>
+                  <Button onClick={onWatchTrailer} disabled={!hasTrailer}>
                     Watch Trailer
                     <img src={PlayIcon} className="w-6 h-6" alt="Play" />
                   </Button>
