@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { CloseIcon, SearchIcon, MenuIcon } from "../ui/icons";
 import Logo from "../../assets/Logo.svg";
 
@@ -63,14 +63,14 @@ export default function Navbar() {
           />
 
           <nav className="hidden md:flex gap-12 md:text-xl">
-            <a href="/" className="group relative inline-block text-gray-300 transition-all duration-300 hover:text-white">
+            <Link to="/" className="group relative inline-block text-gray-300 transition-all duration-300 hover:text-white">
               <span className="relative z-10 block transition-transform duration-300 group-hover:-translate-y-[1px]">Home</span>
               <span className="absolute -bottom-1 left-0 h-[1.5px] w-full origin-left scale-x-0 bg-[var(--color-primary-300)] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
-            <a href="/favorites" className="group relative inline-block text-gray-300 transition-all duration-300 hover:text-white">
+            </Link>
+            <Link to="/favorites" className="group relative inline-block text-gray-300 transition-all duration-300 hover:text-white">
               <span className="relative z-10 block transition-transform duration-300 group-hover:-translate-y-[1px]">Favorites</span>
               <span className="absolute -bottom-1 left-0 h-[1.5px] w-full origin-left scale-x-0 bg-[var(--color-primary-300)] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
+            </Link>
           </nav>
         </div>
 
@@ -153,8 +153,8 @@ export default function Navbar() {
           >
             <div className="layout-gutter pb-6">
               <nav className="mt-4 flex flex-col gap-4 text-white text-[var(--font-size-xl)]">
-                <a href="/" onClick={() => setOpen(false)}>Home</a>
-                <a href="/favorites" onClick={() => setOpen(false)}>Favorites</a>
+                <Link to="/" onClick={() => setOpen(false)}>Home</Link>
+                <Link to="/favorites" onClick={() => setOpen(false)}>Favorites</Link>
               </nav>
             </div>
           </motion.div>

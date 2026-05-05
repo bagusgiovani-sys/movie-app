@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFavorites } from "../hooks";
 import { useMovieTrailer } from "../hooks";
+import type { Movie } from "../types/movie.types";
 import TrailerModal from "../components/movie/TrailerModal";
 import Button from "../components/ui/Button";
 import PlayIcon from "../assets/Play_icon.svg";
@@ -30,10 +31,12 @@ const FavoriteItem = ({
   onRemove,
   onWatchTrailer,
 }: {
-  movie: any;
+  movie: Movie;
   onRemove: () => void;
   onWatchTrailer: () => void;
-}) => (
+}) => {
+  const navigate = useNavigate();
+  return (
   <div className="relative rounded-2xl overflow-hidden mb-4">
     {/* BACKGROUND POSTER */}
     <img
@@ -51,14 +54,14 @@ const FavoriteItem = ({
         src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
         alt={movie.title}
         className="w-20 md:w-32 object-cover rounded-lg flex-shrink-0 cursor-pointer self-start"
-        onClick={() => (window.location.href = `/movie/${movie.id}`)}
+        onClick={() => navigate(`/movie/${movie.id}`)}
       />
 
       {/* INFO */}
       <div className="flex-1 min-w-0 flex flex-col justify-center">
         <h3
           className="font-bold text-base md:text-3xl mb-1 cursor-pointer hover:text-zinc-300 transition-colors"
-          onClick={() => (window.location.href = `/movie/${movie.id}`)}
+          onClick={() => navigate(`/movie/${movie.id}`)}
         >
           {movie.title}
         </h3>
@@ -93,7 +96,8 @@ const FavoriteItem = ({
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const FavoritesPage = () => {
   const { favorites, toggleFavorite } = useFavorites();
