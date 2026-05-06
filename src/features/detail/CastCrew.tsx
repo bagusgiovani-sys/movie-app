@@ -1,4 +1,4 @@
-import CastCard from "../../components/movie/CastCard";
+import { CastCard } from "../../components/movie";
 import type { Cast } from "../../types";
 
 type CastCrewProps = {

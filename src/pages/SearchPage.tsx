@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useSearchMovies } from "../hooks";
-import MovieCardHorizontal from "../components/movie/MovieCardHorizontal";
+import { MovieCardHorizontal } from "../components/movie";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useFavorites } from "../hooks";
 import { useMovieTrailer } from "../hooks";
 import { FavoriteItem, FavoritesEmptyState } from "../features/favorites";
-import TrailerModal from "../components/movie/TrailerModal";
+import { TrailerModal } from "../components/movie";
 
 const FavoritesPage = () => {
   const { favorites, toggleFavorite } = useFavorites();

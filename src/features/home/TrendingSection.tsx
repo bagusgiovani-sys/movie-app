@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTrendingMovies } from "../../hooks";
-import MovieCard from "../../components/movie/MovieCard";
+import { MovieCard } from "../../components/movie";
 import ArrowRight from "../../assets/Arrow.svg";
 
 const CARD_WIDTH = 224;

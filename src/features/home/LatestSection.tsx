@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLatestMovies } from "../../hooks";
-import MovieCard from "../../components/movie/MovieCard";
+import { MovieCard } from "../../components/movie";
 
 const LatestSection = () => {
   const { data: movies, isLoading, isError } = useLatestMovies();

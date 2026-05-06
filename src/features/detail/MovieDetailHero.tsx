@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { MovieDetail } from "../../types";
-import Button from "../../components/ui/Button";
+import { Button } from "../../components/ui";
 import PlayIcon from "../../assets/Play_icon.svg";
 import Overview from "./Overview";
 import { TMDB_IMAGE_URL } from "../../lib/constants";

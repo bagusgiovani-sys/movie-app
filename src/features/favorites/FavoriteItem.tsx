@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import type { Movie } from "../../types/movie.types";
-import Button from "../../components/ui/Button";
+import { Button } from "../../components/ui";
 import PlayIcon from "../../assets/Play_icon.svg";
 import { TMDB_IMAGE_URL } from "../../lib/constants";
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMovieDetail, useMovieCredits, useMovieTrailer, useFavorites } from "../hooks";
 import { MovieDetailHero, CastCrew } from "../features/detail";
-import TrailerModal from "../components/movie/TrailerModal";
+import { TrailerModal } from "../components/movie";
 
 const MovieDetailPage = () => {
   const { id } = useParams<{ id: string }>();

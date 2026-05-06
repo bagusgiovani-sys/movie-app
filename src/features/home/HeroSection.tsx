@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useTrendingMovies } from "../../hooks/useTrendingMovies";
-import { useMovieTrailer } from "../../hooks";
-import TrailerModal from "../../components/movie/TrailerModal";
-import Button from "../../components/ui/Button";
+import { useTrendingMovies, useMovieTrailer } from "../../hooks";
+import { TrailerModal } from "../../components/movie";
+import { Button } from "../../components/ui";
 import PlayIcon from "../../assets/Play_icon.svg";
 import { TMDB_IMAGE_URL } from "../../lib/constants";
 
