@@ -1,3 +1,4 @@
+// Full-screen hero — shows the #1 trending movie with a trailer button and detail link
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +9,16 @@ import PlayIcon from "../../assets/Play_icon.svg";
 import { TMDB_IMAGE_URL } from "../../lib/constants";
 
 const HeroSection = () => {
+  // Fetch trending list; pick the first movie as the featured title
   const { data: trendingMovies, isLoading, isError } = useTrendingMovies();
   const [openTrailer, setOpenTrailer] = useState(false);
   const navigate = useNavigate();
 
   const movie = trendingMovies?.[0];
+  // Trailer hook requires a string id; pass empty string when no movie yet (hook is disabled internally)
   const { data: trailer } = useMovieTrailer(movie?.id ? String(movie.id) : "");
 
+  // Loading — hold the full viewport height to prevent layout shift
   if (isLoading) return <section className="h-screen w-full bg-black" />;
 
   if (isError) {
@@ -25,15 +29,17 @@ const HeroSection = () => {
     );
   }
 
+  // No movie returned (empty trending list) — same placeholder height
   if (!movie) return <section className="h-screen w-full bg-black" />;
 
+  // Use null instead of empty string so the img tag is skipped entirely when missing
   const backdropUrl = movie.backdrop_path
     ? `${TMDB_IMAGE_URL.original}${movie.backdrop_path}`
     : null;
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* BACKGROUND IMAGE */}
+      {/* Background — backdrop image with dark overlay and bottom fade */}
       <motion.div
         className="absolute inset-0"
         initial={{ scale: 1.1, opacity: 0 }}
@@ -51,7 +57,7 @@ const HeroSection = () => {
         <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black to-transparent" />
       </motion.div>
 
-      {/* HERO CONTENT */}
+      {/* Content — staggered-entry title, overview snippet, and action buttons */}
       <div className="relative z-10 h-full flex items-end pb-24">
         <div className="layout-gutter w-full space-y-6 max-w-2xl">
 
@@ -73,6 +79,7 @@ const HeroSection = () => {
             {movie.overview}
           </motion.p>
 
+          {/* Buttons — trailer disabled when no trailer key is available */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +98,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* TRAILER MODAL */}
+      {/* Trailer modal — only mounts when the modal is open and a trailer key exists */}
       {openTrailer && trailer && (
         <TrailerModal
           videoKey={trailer.key}

@@ -1,3 +1,4 @@
+// Single row in the Favorites list — backdrop bg, poster thumbnail, info, and action buttons
 import { useNavigate } from "react-router-dom";
 import type { Movie } from "../../types/movie.types";
 import { Button } from "../../components/ui";
@@ -15,17 +16,18 @@ const FavoriteItem = ({ movie, onRemove, onWatchTrailer }: FavoriteItemProps) =>
 
   return (
     <div className="relative rounded-2xl overflow-hidden mb-4">
-      {/* BACKGROUND POSTER */}
+      {/* Blurred backdrop on the right side — falls back to poster when backdrop is missing */}
       <img
         src={`${TMDB_IMAGE_URL.original}${movie.backdrop_path || movie.poster_path}`}
         alt=""
         className="absolute top-0 right-0 h-full w-2/3 object-cover object-left"
       />
+      {/* Left-to-right gradient keeps text legible over the backdrop */}
       <div className="absolute inset-0 bg-gradient-to-r from-black from-50% via-black/80 via-70% to-transparent" />
 
-      {/* CONTENT */}
+      {/* Foreground content — poster + info column */}
       <div className="relative z-10 flex gap-4 p-5">
-        {/* POSTER */}
+        {/* Poster thumbnail — clicking navigates to the detail page */}
         <img
           src={`${TMDB_IMAGE_URL.w200}${movie.poster_path}`}
           alt={movie.title}
@@ -33,7 +35,7 @@ const FavoriteItem = ({ movie, onRemove, onWatchTrailer }: FavoriteItemProps) =>
           onClick={() => navigate(`/movie/${movie.id}`)}
         />
 
-        {/* INFO */}
+        {/* Info column — title, rating, overview (desktop only), and action buttons */}
         <div className="flex-1 min-w-0 flex flex-col justify-center">
           <h3
             className="font-bold text-base md:text-3xl mb-1 cursor-pointer hover:text-zinc-300 transition-colors"
@@ -49,11 +51,12 @@ const FavoriteItem = ({ movie, onRemove, onWatchTrailer }: FavoriteItemProps) =>
               {movie.vote_average.toFixed(1)}/10
             </span>
           </div>
+          {/* Overview hidden on mobile to keep the row compact */}
           <p className="text-sm text-zinc-300 line-clamp-2 mb-4 hidden md:block">
             {movie.overview}
           </p>
 
-          {/* BUTTONS */}
+          {/* Buttons — mobile uses a smaller inline button; desktop uses the shared Button component */}
           <div className="flex items-center gap-3">
             <button
               onClick={onWatchTrailer}
@@ -66,6 +69,7 @@ const FavoriteItem = ({ movie, onRemove, onWatchTrailer }: FavoriteItemProps) =>
               Watch Trailer
               <img src={PlayIcon} className="w-5 h-5" alt="Play" />
             </Button>
+            {/* Favorite (heart) button — always shows as "active" since this item is already saved */}
             <Button variant="favorite" isFavorite={true} onClick={onRemove} size="xs" className="md:hidden" />
             <Button variant="favorite" isFavorite={true} onClick={onRemove} size="sm" className="hidden md:flex" />
           </div>

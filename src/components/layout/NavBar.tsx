@@ -1,3 +1,4 @@
+// Top navigation bar — fixed, scroll-aware, with desktop search and mobile hamburger menu
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, Link } from "react-router-dom";
@@ -5,6 +6,7 @@ import { CloseIcon, SearchIcon, MenuIcon } from "../ui/icons";
 import Logo from "../../assets/Logo.svg";
 
 export default function Navbar() {
+  // UI state — menu open, search input value, scroll position, mobile search panel
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -12,18 +14,21 @@ export default function Navbar() {
   const mobileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
+  // Apply frosted-glass background once the user scrolls past 10px
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Auto-focus the mobile search input after its expand animation (150ms delay)
   useEffect(() => {
     if (!mobileSearchOpen) return;
     const t = setTimeout(() => mobileInputRef.current?.focus(), 150);
     return () => clearTimeout(t);
   }, [mobileSearchOpen]);
 
+  // Navigate to search results on Enter; reset all search/menu state afterwards
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
@@ -33,6 +38,7 @@ export default function Navbar() {
     }
   };
 
+  // Same navigation triggered by clicking the search icon button
   const handleSearchClick = () => {
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
@@ -53,7 +59,7 @@ export default function Navbar() {
     >
       <div className="layout-gutter flex h-20 md:h-12 items-center mt-4 md:mb-8 md:mt-8 text-(--font-size-xl)">
 
-        {/* LEFT */}
+        {/* LEFT — logo + desktop nav links */}
         <div className="flex items-center md:gap-20">
           <img
             src={Logo}
@@ -62,6 +68,7 @@ export default function Navbar() {
             onClick={() => navigate("/")}
           />
 
+          {/* Desktop nav links with animated underline on hover */}
           <nav className="hidden md:flex gap-12 md:text-xl">
             <Link to="/" className="group relative inline-block text-gray-300 transition-all duration-300 hover:text-white">
               <span className="relative z-10 block transition-transform duration-300 group-hover:-translate-y-[1px]">Home</span>
@@ -74,10 +81,10 @@ export default function Navbar() {
           </nav>
         </div>
 
-        {/* RIGHT */}
+        {/* RIGHT — desktop search bar + mobile search/hamburger controls */}
         <div className="ml-auto flex items-center gap-3">
 
-          {/* Search Bar (Desktop) */}
+          {/* Desktop search — always visible, pill-shaped input with icon */}
           <div className="hidden md:flex items-center gap-2 rounded-full bg-white/10 focus-within:bg-black/50 transition-colors duration-200 px-4 py-2">
             <button onClick={handleSearchClick}>
               <SearchIcon className="h-[1em] w-[1em] text-white/70 hover:text-white transition-colors" />
@@ -92,10 +99,10 @@ export default function Navbar() {
             />
           </div>
 
-          {/* MOBILE Search */}
+          {/* Mobile controls — expandable search panel + hamburger toggle */}
           <div className="flex md:hidden items-center gap-3">
 
-            {/* Expandable Search */}
+            {/* Expandable search panel — animates in/out on icon tap */}
             <div className="flex items-center justify-end">
               <AnimatePresence>
                 {mobileSearchOpen && (
@@ -129,7 +136,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Hamburger / Close toggle */}
+            {/* Hamburger / close icon toggles the mobile nav menu */}
             <button
               onClick={() => setOpen((prev) => !prev)}
               className="text-white"
@@ -141,7 +148,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* Mobile dropdown menu — slides down when hamburger is open */}
       <AnimatePresence>
         {open && (
           <motion.div

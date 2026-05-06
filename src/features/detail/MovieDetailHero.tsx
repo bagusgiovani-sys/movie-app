@@ -1,3 +1,4 @@
+// Hero section on the Movie Detail page — separate mobile and desktop layouts
 import { useState } from "react";
 import type { MovieDetail } from "../../types";
 import { Button } from "../../components/ui";
@@ -13,7 +14,7 @@ type MovieDetailHeroProps = {
   hasTrailer: boolean;
 };
 
-// Mobile info cards
+// Mobile stat card — icon + label + value in a pill box (rating, genre, age limit)
 const InfoCard = ({
   icon,
   label,
@@ -30,7 +31,7 @@ const InfoCard = ({
   </div>
 );
 
-// Desktop compact pills with visible container
+// Desktop compact stat pill — shown inline next to the Overview heading
 const StatPill = ({ icon, value }: { icon?: React.ReactNode; value: string }) => (
   <div className="flex items-center gap-1.5 bg-zinc-950/80 backdrop-blur-sm border border-zinc-800 rounded-xl px-3 py-2">
     {icon}
@@ -45,6 +46,7 @@ const MovieDetailHero = ({
   isFavorite,
   hasTrailer,
 }: MovieDetailHeroProps) => {
+  // Separate loaded flags for each image so skeletons fade out independently
   const [backdropLoaded, setBackdropLoaded] = useState(false);
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [desktopBackdropLoaded, setDesktopBackdropLoaded] = useState(false);
@@ -54,6 +56,7 @@ const MovieDetailHero = ({
     <>
       {/* ── MOBILE ────────────────────────────────────────────── */}
       <div className="md:hidden">
+        {/* Full-width backdrop with bottom-to-black gradient */}
         <div className="relative h-80 bg-zinc-900">
           {!backdropLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
           <img
@@ -65,7 +68,9 @@ const MovieDetailHero = ({
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
         </div>
 
+        {/* Content card overlapping the backdrop by -mt-24 */}
         <div className="px-4 -mt-24 relative z-10">
+          {/* Poster thumbnail + title/date row */}
           <div className="flex gap-4 mb-4">
             <div className="flex-shrink-0 w-28 h-44 rounded-lg overflow-hidden bg-zinc-800 relative">
               {!posterLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
@@ -89,7 +94,7 @@ const MovieDetailHero = ({
             </div>
           </div>
 
-          {/* BUTTONS */}
+          {/* Action buttons — trailer disabled when no trailer key exists */}
           <div className="flex gap-3 mb-5">
             <Button onClick={onWatchTrailer} disabled={!hasTrailer} className="flex-1 justify-center">
               Watch Trailer
@@ -98,14 +103,14 @@ const MovieDetailHero = ({
             <Button variant="favorite" isFavorite={isFavorite} onClick={onToggleFavorite} size="sm" />
           </div>
 
-          {/* RATING CARDS */}
+          {/* Three stat cards: rating / genre / age rating */}
           <div className="flex gap-3 mb-6">
             <InfoCard label="Rating" value={`${movie.vote_average.toFixed(1)}/10`} icon={<svg className="w-6 h-6 fill-yellow-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>} />
             <InfoCard label="Genre" value={movie.genres?.[0]?.name ?? "—"} icon={<svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z" /></svg>} />
             <InfoCard label="Age Limit" value={movie.adult ? "18+" : "13+"} icon={<div className="w-6 h-6 rounded bg-zinc-800 flex items-center justify-center"><span className="text-xs font-bold">{movie.adult ? "18" : "13"}</span></div>} />
           </div>
 
-          {/* OVERVIEW - mobile only */}
+          {/* Overview text — desktop renders this inline inside the hero instead */}
           <div className="mb-6">
             <Overview overview={movie.overview} />
           </div>
@@ -115,6 +120,7 @@ const MovieDetailHero = ({
       {/* ── DESKTOP ───────────────────────────────────────────── */}
       <div className="hidden md:block">
         <div className="relative h-full overflow-hidden bg-zinc-900">
+          {/* Full-bleed backdrop with left-to-right and bottom-to-top gradients */}
           {!desktopBackdropLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
           <img
             src={`${TMDB_IMAGE_URL.original}${movie.backdrop_path}`}
@@ -125,9 +131,10 @@ const MovieDetailHero = ({
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
+          {/* Info panel anchored to the bottom-left of the backdrop */}
           <div className="absolute inset-0 layout-gutter flex items-end pb-64">
             <div className="flex gap-8 w-full items-end">
-              {/* POSTER */}
+              {/* Poster image — skeleton fades out when loaded */}
               {movie.poster_path && (
                 <div className="flex-shrink-0 w-56 rounded-2xl overflow-hidden bg-zinc-800 relative">
                   {!desktopPosterLoaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
@@ -140,10 +147,10 @@ const MovieDetailHero = ({
                 </div>
               )}
 
-              {/* INFO */}
+              {/* Right column: three stacked rows */}
               <div className="flex-1 flex flex-col gap-4 pb-1">
 
-                {/* ROW 1: BUTTONS + TITLE */}
+                {/* Row 1: action buttons (trailer + favorite) + title and release date */}
                 <div className="flex items-center gap-4">
                   <Button onClick={onWatchTrailer} disabled={!hasTrailer}>
                     Watch Trailer
@@ -162,7 +169,7 @@ const MovieDetailHero = ({
                   </div>
                 </div>
 
-                {/* ROW 2: OVERVIEW HEADER + STAT PILLS */}
+                {/* Row 2: "Overview" heading + inline stat pills (rating / genre / age) */}
                 <div className="flex items-center gap-4">
                   <h2 className="text-2xl font-bold whitespace-nowrap">Overview</h2>
                   <div className="w-px bg-zinc-700 self-stretch" />
@@ -182,7 +189,7 @@ const MovieDetailHero = ({
                   </div>
                 </div>
 
-                {/* ROW 3: OVERVIEW TEXT */}
+                {/* Row 3: overview body text */}
                 <p className="text-zinc-400 text-sm leading-relaxed">
                   {movie.overview}
                 </p>
