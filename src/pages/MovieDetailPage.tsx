@@ -2,8 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMovieDetail, useMovieCredits, useMovieTrailer, useFavorites } from "../hooks";
-import MovieDetailHero from "../features/detail/MovieDetailHero";
-import CastCrew from "../features/detail/CastCrew";
+import { MovieDetailHero, CastCrew } from "../features/detail";
 import TrailerModal from "../components/movie/TrailerModal";
 
 const MovieDetailPage = () => {

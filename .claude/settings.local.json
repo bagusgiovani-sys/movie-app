@@ -6,7 +6,8 @@
       "mcp__plugin_playwright_playwright__browser_navigate",
       "Read(//tmp/**)",
       "mcp__plugin_playwright_playwright__browser_console_messages",
-      "mcp__plugin_playwright_playwright__browser_take_screenshot"
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(bash \"/c/Users/kodec/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/brainstorming/scripts/start-server.sh\" --project-dir \"/c/Exodus/Projects/Movie App/movie-app\")"
     ]
   }
 }

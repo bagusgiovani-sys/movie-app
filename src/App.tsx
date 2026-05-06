@@ -1,12 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Toaster } from "sonner";
-import Navbar from './components/layout/NavBar';
+import { Navbar, Footer } from './components/layout';
 import HomePage from './pages/HomePage';
 import MovieDetailPage from './pages/MovieDetailPage';
 import SearchPage from './pages/SearchPage';
 import FavoritesPage from './pages/FavoritesPage';
-import Footer from './components/layout/Footer';
 import './index.css';
 
 const ScrollToTop = () => {
