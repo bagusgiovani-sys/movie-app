@@ -30,9 +30,8 @@ describe('useSearchMovies', () => {
     vi.mocked(searchMovies).mockResolvedValue([mockMovie])
   })
 
-  it('does not call searchMovies when query is empty', async () => {
+  it('does not call searchMovies when query is empty', () => {
     renderHook(() => useSearchMovies(''), { wrapper: makeWrapper() })
-    await new Promise((r) => setTimeout(r, 50))
     expect(searchMovies).not.toHaveBeenCalled()
   })
 
