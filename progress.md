@@ -24,7 +24,7 @@ src/
 └── types/                     — movie.types.ts
 ```
 
-## 🏗 Architecture Score: 7.5/10
+## 🏗 Architecture Score: 8.5/10
 
 | Dimension                 | Score | Notes                                                          |
 |---------------------------|-------|----------------------------------------------------------------|
@@ -32,11 +32,11 @@ src/
 | Dependency direction      | 8/10  | Mostly one-way; no circular imports detected                   |
 | Modularity & cohesion     | 8/10  | Feature folders well-scoped; barrel exports in place           |
 | Error handling coverage   | 5/10  | React Query handles fetch errors but UI error states unclear   |
-| Test coverage & quality   | 0/10  | No tests present                                               |
+| Test coverage & quality   | 9/10  | Vitest unit + Playwright E2E; ≥80% coverage on hooks/services/components |
 | Configuration management  | 7/10  | Vite + TS config present; env vars via TMDB not yet audited    |
 | Security posture          | 7/10  | API key presumably in .env; no user input beyond search        |
 | Scalability ceiling       | 8/10  | Feature-based structure scales well                            |
-| **Overall**               | **7.5/10** |                                                           |
+| **Overall**               | **8.5/10** |                                                           |
 
 ## ✅ Completed
 
@@ -51,22 +51,43 @@ src/
 - [x] Fix MovieDetailHero tablet breakpoint gap (768–1023px was blank)
 - [x] Remove redundant `mx-auto` from SearchPage
 - [x] Delete orphaned dead file `FavoritesList.tsx`
+- [x] Manual Playwright E2E test: all pages and features verified working (2026-05-07)
+- [x] Add Vitest unit tests: hooks, services, components (2026-05-07)
+- [x] Add Playwright E2E tests: home, detail, favorites, search (2026-05-07)
 
 ## 🔄 In Progress
 
-_(nothing — all session fixes committed)_
+_(none — all tasks complete)_
 
 ## 📋 Backlog
 
 - [ ] Add error boundary / error UI states for failed API calls
-- [ ] Add tests (0% coverage — flagged as blocker)
 - [ ] Audit TMDB API key exposure (should be in .env, check .env.example exists)
 - [ ] Consider memoizing MovieCard renders with React.memo for list perf
 - [ ] Add `<title>` / meta tags per page (SEO / a11y)
 
 ## 🚨 Blockers
 
-- No tests — any feature marked complete lacks regression coverage
+_(none)_
+
+## ✅ Test Suite Progress (Tasks 1–14)
+
+| Task | Description | Status |
+|------|-------------|--------|
+| 1 | Install deps + scaffold configs | Done |
+| 2 | E2E fixture files + mockApi helper | Done (JSON import syntax fixed) |
+| 3 | Unit: movieService getMovieVideos | Done |
+| 4 | Unit: useFavorites hook | Done |
+| 5 | Unit: useSearchMovies hook | Done |
+| 6 | Unit: useTrendingMovies + useLatestMovies | Done |
+| 7 | Unit: Button component | Done |
+| 8 | Unit: CastCard component | Done |
+| 9 | Unit: MovieCard component | Done |
+| 10 | E2E: home page spec | Done |
+| 11 | E2E: movie detail page | Done |
+| 12 | E2E: favorites flow | Done |
+| 13 | E2E: search flow | Done |
+| 14 | Verify coverage + update progress.md | Done |
 
 ## 📊 Session Stats
 
