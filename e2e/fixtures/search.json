@@ -1,0 +1,22 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 2001,
+      "title": "Search Result Movie",
+      "poster_path": "/search1.jpg",
+      "backdrop_path": null,
+      "overview": "A movie found via search.",
+      "release_date": "2024-06-01",
+      "vote_average": 6.8,
+      "vote_count": 300,
+      "genre_ids": [18],
+      "popularity": 120.0,
+      "original_language": "en",
+      "original_title": "Search Result Movie",
+      "adult": false
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}

@@ -1,0 +1,20 @@
+{
+  "id": 1001,
+  "cast": [
+    {
+      "id": 201,
+      "name": "Actor One",
+      "character": "The Hero",
+      "profile_path": "/actor1.jpg",
+      "order": 0
+    },
+    {
+      "id": 202,
+      "name": "Actor Two",
+      "character": "The Villain",
+      "profile_path": null,
+      "order": 1
+    }
+  ],
+  "crew": []
+}

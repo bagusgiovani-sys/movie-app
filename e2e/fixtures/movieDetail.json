@@ -1,0 +1,21 @@
+{
+  "id": 1001,
+  "title": "Test Movie Alpha",
+  "poster_path": "/alpha.jpg",
+  "backdrop_path": "/alpha-backdrop.jpg",
+  "overview": "A test movie overview for alpha.",
+  "release_date": "2026-01-15",
+  "vote_average": 8.2,
+  "vote_count": 1500,
+  "genre_ids": [28],
+  "popularity": 450.5,
+  "original_language": "en",
+  "original_title": "Test Movie Alpha",
+  "adult": false,
+  "runtime": 120,
+  "status": "Released",
+  "tagline": "Test tagline here.",
+  "budget": 10000000,
+  "revenue": 50000000,
+  "genres": [{ "id": 28, "name": "Action" }]
+}

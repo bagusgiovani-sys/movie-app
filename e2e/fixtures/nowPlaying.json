@@ -1,0 +1,37 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 1003,
+      "title": "Test Movie Gamma",
+      "poster_path": "/gamma.jpg",
+      "backdrop_path": "/gamma-backdrop.jpg",
+      "overview": "A test movie overview for gamma.",
+      "release_date": "2026-03-10",
+      "vote_average": 6.9,
+      "vote_count": 600,
+      "genre_ids": [18],
+      "popularity": 200.0,
+      "original_language": "en",
+      "original_title": "Test Movie Gamma",
+      "adult": false
+    },
+    {
+      "id": 1004,
+      "title": "Test Movie Delta",
+      "poster_path": "/delta.jpg",
+      "backdrop_path": "/delta-backdrop.jpg",
+      "overview": "A test movie overview for delta.",
+      "release_date": "2026-04-05",
+      "vote_average": 7.1,
+      "vote_count": 400,
+      "genre_ids": [27],
+      "popularity": 180.5,
+      "original_language": "en",
+      "original_title": "Test Movie Delta",
+      "adult": false
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}
