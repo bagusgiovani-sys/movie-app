@@ -1,5 +1,7 @@
 # Movie Explorer App
 
+**Live demo:** https://movie-app-by-giovani.vercel.app/
+
 A React 19 movie browser built with TypeScript, Vite, Tailwind CSS v4, and TanStack Query. Fetches live data from the TMDB API, supports favoriting movies, searching, and viewing trailers.
 
 ---
