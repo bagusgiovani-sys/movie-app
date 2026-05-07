@@ -9,7 +9,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { channel: 'chromium' },
+      use: { browserName: 'chromium' },
     },
   ],
   webServer: {
