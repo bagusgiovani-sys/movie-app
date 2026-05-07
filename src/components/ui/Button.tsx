@@ -1,3 +1,4 @@
+// Multi-variant button — primary (red), secondary (outlined), favorite (heart icon)
 import React, { useState } from "react";
 
 type ButtonProps = {
@@ -21,6 +22,7 @@ const Button = ({
   size = "lg",
   disabled = false,
 }: ButtonProps) => {
+  // Brief animation lock after clicking the heart so rapid clicks feel intentional
   const [justClicked, setJustClicked] = useState(false);
 
   const handleFavoriteClick = () => {
@@ -29,10 +31,12 @@ const Button = ({
     setTimeout(() => setJustClicked(false), 600);
   };
 
+  // ── Favorite (heart) variant ──────────────────────────────────────────
   if (variant === "favorite") {
     return (
       <button
         onClick={handleFavoriteClick}
+        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         className={`
           ${size === "lg" ? "w-16 h-16" : size === "sm" ? "w-14 h-14" : "w-10 h-10"}
           rounded-xl flex items-center justify-center transition-all duration-200
@@ -60,6 +64,7 @@ const Button = ({
     );
   }
 
+  // ── Secondary (outlined) variant ──────────────────────────────────────
   if (variant === "secondary") {
     return (
       <button
@@ -71,6 +76,7 @@ const Button = ({
     );
   }
 
+  // ── Primary (red fill) variant ────────────────────────────────────────
   const padding = compact ? "px-5 py-2.5 text-sm" : "px-8 py-4";
 
   return (
